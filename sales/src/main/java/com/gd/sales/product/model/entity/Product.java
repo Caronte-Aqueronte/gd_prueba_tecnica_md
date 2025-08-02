@@ -1,17 +1,20 @@
-package com.gd.sales.product.model;
+package com.gd.sales.product.model.entity;
 
 import java.math.BigDecimal;
-import java.util.UUID;
+import java.util.List;
 
-import com.gd.sales.category.model.Category;
+import com.gd.sales.category.model.entity.Category;
+import com.gd.sales.sale.model.entity.Sale;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,6 +48,9 @@ public class Product {
     @ManyToOne(optional = false)
     @JoinColumn(name = "CodigoCategoria", nullable = false)
     private Category category;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<Sale> sales;
 
     public Product(String name, BigDecimal price, Category category) {
         this.name = name;

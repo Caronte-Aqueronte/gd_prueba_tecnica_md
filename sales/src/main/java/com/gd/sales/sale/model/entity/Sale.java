@@ -1,9 +1,9 @@
-package com.gd.sales.sale;
+package com.gd.sales.sale.model.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import com.gd.sales.product.model.Product;
+import com.gd.sales.product.model.entity.Product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
