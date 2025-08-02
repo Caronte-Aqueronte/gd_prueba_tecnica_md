@@ -40,7 +40,7 @@ public class Sale {
     private LocalDateTime date;
 
     @Column(name = "Cantidad", nullable = false)
-    private int quantity = 1;
+    private int quantity;
 
     @Column(name = "PrecioUnitario", precision = 10, scale = 2, nullable = false)
     private BigDecimal unitPrice;
