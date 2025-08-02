@@ -1,0 +1,62 @@
+<div class="p-6 bg-gray-50 min-h-screen">
+  <div class="max-w-7xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+    <h1
+      class="text-2xl font-semibold text-gray-800 p-6 border-b flex items-center gap-2"
+    >
+      <nz-icon nzType="pie-chart" nzTheme="outline" />
+      Historial de Ventas
+    </h1>
+    <div class="p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+      <label for="filtro" class="text-gray-600 font-medium"
+        >Filtrar por categoria:</label
+      >
+      <nz-select
+        class="min-w-[200px]"
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Selecciona una categoria"
+        [(ngModel)]="selectedValue"
+        (ngModelChange)="onSelectedCategory($event)"
+      >
+        @for (cat of categories; track cat) {
+        <nz-option
+          [nzLabel]="cat.name"
+          [nzValue]="cat.categoryCode"
+        ></nz-option>
+        }
+      </nz-select>
+    </div>
+
+    <nz-table
+      #basicTable
+      [nzData]="sales"
+      [nzBordered]="true"
+      [nzSize]="'middle'"
+    >
+      <thead>
+        <tr class="bg-gray-100 text-gray-700 text-sm uppercase tracking-wider">
+          <th class="px-4 py-2">Código Venta</th>
+          <th class="px-4 py-2">Producto</th>
+          <th class="px-4 py-2">Categoria</th>
+          <th class="px-4 py-2">Cantidad</th>
+          <th class="px-4 py-2">Precio Unitario</th>
+          <th class="px-4 py-2">Total</th>
+          <th class="px-4 py-2">Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (data of basicTable.data; track data) {
+        <tr class="hover:bg-gray-50 text-sm text-gray-700">
+          <td class="px-4 py-2">{{ data.saleCode }}</td>
+          <td class="px-4 py-2">{{ data.product.name }}</td>
+          <td class="px-4 py-2">{{ data.product.category.name }}</td>
+          <td class="px-4 py-2">{{ data.quantity }}</td>
+          <td class="px-4 py-2">Q{{ data.unitPrice }}</td>
+          <td class="px-4 py-2">Q{{ data.total }}</td>
+          <td class="px-4 py-2">{{ data.date }}</td>
+        </tr>
+        }
+      </tbody>
+    </nz-table>
+  </div>
+</div>
