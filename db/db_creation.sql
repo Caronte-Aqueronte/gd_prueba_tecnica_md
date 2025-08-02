@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS Categoria (
 CREATE TABLE IF NOT EXISTS Producto (
     CodigoProducto CHAR(36) PRIMARY KEY,
     Nombre VARCHAR(100) NOT NULL,
-    CodigoCategoria CHAR(36),
+    Precio DECIMAL(10, 2) NOT NULL, 
+    CodigoCategoria CHAR(36) NOT NULL,
     FOREIGN KEY (CodigoCategoria) REFERENCES Categoria(CodigoCategoria)
 );
 
@@ -30,8 +31,8 @@ CREATE TABLE IF NOT EXISTS Venta (
     Fecha DATETIME NOT NULL,
     Cantidad INT NOT NULL DEFAULT 1, 
     PrecioUnitario DECIMAL(10, 2) NOT NULL, 
-    Total DECIMAL(12, 2), -- guarda el total de la venta 
-    CodigoProducto CHAR(36),
+    Total DECIMAL(12, 2) NOT NULL, -- guarda el total de la venta 
+    CodigoProducto CHAR(36) NOT NULL,
     FOREIGN KEY (CodigoProducto) REFERENCES Producto(CodigoProducto)
 );
 
@@ -44,30 +45,30 @@ INSERT INTO Categoria (CodigoCategoria, Nombre) VALUES
 ('55555555-5555-5555-5555-555555555555', 'Libros');
 
 -- inserts para productos
-INSERT INTO Producto (CodigoProducto, Nombre, CodigoCategoria) VALUES
-('a1', 'Televisor 42"', '11111111-1111-1111-1111-111111111111'),
-('a2', 'Laptop', '11111111-1111-1111-1111-111111111111'),
-('a3', 'Auriculares', '11111111-1111-1111-1111-111111111111'),
-('a4', 'Cámara Digital', '11111111-1111-1111-1111-111111111111'),
-('a5', 'Smartphone', '11111111-1111-1111-1111-111111111111'),
+INSERT INTO Producto (CodigoProducto, Nombre,Precio, CodigoCategoria) VALUES
+('a1', 'Televisor 42"', 30,'11111111-1111-1111-1111-111111111111'),
+('a2', 'Laptop', 21.90,'11111111-1111-1111-1111-111111111111'),
+('a3', 'Auriculares', 50,'11111111-1111-1111-1111-111111111111'),
+('a4', 'Cámara Digital', 10,'11111111-1111-1111-1111-111111111111'),
+('a5', 'Smartphone', 80,'11111111-1111-1111-1111-111111111111'),
 
-('b1', 'Camiseta', '22222222-2222-2222-2222-222222222222'),
-('b2', 'Jeans', '22222222-2222-2222-2222-222222222222'),
-('b3', 'Chaqueta', '22222222-2222-2222-2222-222222222222'),
-('b4', 'Zapatos deportivos', '22222222-2222-2222-2222-222222222222'),
-('b5', 'Gorra', '22222222-2222-2222-2222-222222222222'),
+('b1', 'Camiseta',12, '22222222-2222-2222-2222-222222222222'),
+('b2', 'Jeans', 13,'22222222-2222-2222-2222-222222222222'),
+('b3', 'Chaqueta',14, '22222222-2222-2222-2222-222222222222'),
+('b4', 'Zapatos deportivos',55, '22222222-2222-2222-2222-222222222222'),
+('b5', 'Gorra',80, '22222222-2222-2222-2222-222222222222'),
 
-('c1', 'Silla', '33333333-3333-3333-3333-333333333333'),
-('c2', 'Mesa de comedor', '33333333-3333-3333-3333-333333333333'),
-('c3', 'Lámpara', '33333333-3333-3333-3333-333333333333'),
-('c4', 'Alfombra', '33333333-3333-3333-3333-333333333333'),
-('c5', 'Estante', '33333333-3333-3333-3333-333333333333'),
+('c1', 'Silla', 23,'33333333-3333-3333-3333-333333333333'),
+('c2', 'Mesa de comedor', 25,'33333333-3333-3333-3333-333333333333'),
+('c3', 'Lámpara', 90,'33333333-3333-3333-3333-333333333333'),
+('c4', 'Alfombra', 60,'33333333-3333-3333-3333-333333333333'),
+('c5', 'Estante', 76,'33333333-3333-3333-3333-333333333333'),
 
-('d1', 'Pelota', '44444444-4444-4444-4444-444444444444'),
-('d2', 'Rompecabezas', '44444444-4444-4444-4444-444444444444'),
-('d3', 'Muñeca', '44444444-4444-4444-4444-444444444444'),
-('d4', 'Carro a control', '44444444-4444-4444-4444-444444444444'),
-('d5', 'Bloques de construcción', '44444444-4444-4444-4444-444444444444');
+('d1', 'Pelota', 43,'44444444-4444-4444-4444-444444444444'),
+('d2', 'Rompecabezas', 21,'44444444-4444-4444-4444-444444444444'),
+('d3', 'Muñeca', 45,'44444444-4444-4444-4444-444444444444'),
+('d4', 'Carro a control', 34,'44444444-4444-4444-4444-444444444444'),
+('d5', 'Bloques de construcción',90, '44444444-4444-4444-4444-444444444444');
 
 -- inserts para ventas
 INSERT INTO Venta (CodigoVenta, Fecha, Cantidad, PrecioUnitario, Total, CodigoProducto) VALUES
